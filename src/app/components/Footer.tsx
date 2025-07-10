@@ -14,7 +14,7 @@ export default function Footer() {
         <br /> or contact via LINE
       </p>
       <Image
-        src="/qr.jpg"
+        src="/qr.JPG"
         alt="QR Code"
         className='ml-150 mb-10'
         width={200}
