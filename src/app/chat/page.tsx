@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -10,10 +10,6 @@ export default function ChatbotPage() {
   ]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -29,7 +25,7 @@ export default function ChatbotPage() {
     <div className="min-h-screen flex flex-col font-sans bg-white">
       <Navbar />
 
-      <main className="flex-1 flex justify-center bg-gradient-to-b from-blue-50 to-white px-4 py-10">
+      <main className="flex-1 flex justify-center bg-gradient-to-b from-blue-50 to-white px-4 py-10 mb-50">
         <div className="w-full max-w-3xl flex flex-col bg-white shadow-xl rounded-xl border border-gray-200">
           {/* Header */}
           <div className="bg-blue-600 text-white text-center py-4 rounded-t-xl font-semibold text-lg">

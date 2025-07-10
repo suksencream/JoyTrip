@@ -12,6 +12,7 @@ export default function Navbar() {
         {/* Center: Navigation links */}
         <ul className=" hidden md:flex space-x-6 text-gray-700 absolute left-1/2 transform -translate-x-1/2">
           <li><Link href="/">Home</Link></li>
+          <li><Link href="/#about">about</Link></li>
           <li><Link href="/#features">Features</Link></li>
           <li><Link href="/#contact">Contact</Link></li>
         </ul>
