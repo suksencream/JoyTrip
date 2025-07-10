@@ -68,7 +68,7 @@ export default function TokyoTripPage() {
       {/* Banner with Background Image and Back Button */}
       <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
         <Image
-          src="/tokyo.jpg" // replace with your Tokyo image path
+          src="/img/tokyo.jpg" // replace with your Tokyo image path
           alt="Tokyo Skyline"
           fill
           className="object-cover"

@@ -42,21 +42,21 @@ export default function HomePage() {
       name: 'Ivanner Mora',
       title: 'Trip to Tokyo',
       desc: 'Join me on an exciting 5-day journey through Tokyo, where we’ll visit iconic landmarks, indulge in delicious meals, and explore vibrant neighborhoods.',
-      image: '/tokyo.webp',
+      image: '/img/tokyo.jpg',
       slug: 'tokyo',
     },
     {
       name: 'Pablo Guzman',
       title: 'Trip to New York',
       desc: 'Experience the best of New York City in just 4 days! Explore iconic landmarks, indulge in delicious meals, and immerse yourself in culture.',
-      image: '/newyork.avif',
+      image: '/img/newyork.jpg',
       slug: 'new-york',
     },
     {
       name: 'Rosarinho Alves',
       title: 'Trip to Switzerland',
       desc: 'A breathtaking journey across the Alps with panoramic train rides, lakeside villages, and chocolate delights.',
-      image: '/swit.webp',
+      image: '/img/swit.jpg',
       slug: 'switzerland',
     },
   ];
@@ -66,19 +66,41 @@ export default function HomePage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="flex-1 bg-gradient-to-b from-blue-50 to-white py-20 text-center px-6">
+      <section
+        className="flex-1 py-20 text-center px-6 bg-gradient-to-b from-blue-50 to-white"
+        style={{
+          backgroundImage: 'url("/banner.png")',
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          width: '100%',
+          height: 'auto',
+        }}
+      >
         <h1 className="text-6xl md:text-7xl font-extrabold text-gray-800 mb-8 mt-45">
-          Your <span className="text-blue-600">AI-Powered</span> Trip
+           <span className="text-yellow-300">Easy Trips with Smart Tech</span> 
         </h1>
-        <p className="text-xl text-gray-600 mb-10 max-w-xl mx-auto">
+        <p className="text-xl text-yellow-300 mb-10 max-w-xl mx-auto">
           Your Personal Travel Assistant.<br /> Smarter than Google. Cooler than a Tour Guide.
         </p>
-        <Link
+
+        {/* Scroll Button */}
+        <a
           href="/chat"
-          className="bg-blue-600 text-white px-14 py-4 rounded-xl text-lg hover:bg-blue-700 mb-10 inline-block"
+          className="inline-flex items-center justify-center w-14 h-14 bg-gray-200 text-green-500 rounded-full relative overflow-hidden mb-10 mx-auto"
         >
-          Create a Trip
-        </Link>
+          <svg
+            width="16"
+            height="20"
+            viewBox="0 0 16 20"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6"
+          >
+            <path d="M17.1,11.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L10,15.6L4.3,9.9c-0.4-0.4-1-0.4-1.4,0c-0.4,0.4-0.4,1,0,1.4l6.4,6.4		c0.4,0.4,1,0.4,1.4,0L17.1,11.3z M9-2v19h2V-2H9z"></path>
+          </svg>
+
+          {/* Optional additional circle effect (like ::before or ::after) */}
+          <span className="absolute top-0 left-0 w-32 h-32 bg-white opacity-50 rounded-full animate-ping"></span>
+        </a>
       </section>
 
       {/* Feature Showcase */}
@@ -157,6 +179,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      
 
       <Footer />
     </div>

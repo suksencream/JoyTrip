@@ -68,7 +68,7 @@ export default function NewYorkTripPage() {
       {/* Banner with Back Button */}
       <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
         <Image
-          src="/swit.webp"
+          src="/img/swit.jpg"
           alt="Switzerland Alps"
           fill
           className="object-cover"
