@@ -4,37 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
-interface TripCardProps {
-  name: string;
-  title: string;
-  desc: string;
-  image: string;
-  slug: string;
-}
-
-function TripCard({ name, title, desc, image, slug }: TripCardProps) {
-  return (
-    <Link href={`/trips/${slug}`} className="block">
-      <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl group transform transition duration-300 hover:scale-[1.02]">
-        <div className="relative w-full h-64">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            unoptimized
-          />
-        </div>
-        <div className="absolute inset-0 bg-black bg-opacity-50 p-6 flex flex-col justify-end text-left text-white">
-          <p className="text-sm mb-1">👤 {name}</p>
-          <h3 className="text-2xl font-bold">{title}</h3>
-          <p className="text-sm mt-2">{desc}</p>
-        </div>
-      </div>
-    </Link>
-  );
-}
+import TripCard from './components/TripCard'; // ✅ Fixed: Using external TripCard component
 
 export default function HomePage() {
   const trips = [
@@ -59,17 +29,39 @@ export default function HomePage() {
       image: '/img/swit.jpg',
       slug: 'switzerland',
     },
+    {
+      name: 'Claire Dubois',
+      title: 'Trip to Paris',
+      desc: 'Wander through charming streets, visit world-class museums, savor French pastries, and watch the Eiffel Tower sparkle at night.',
+      image: '/img/paris.avif',
+      slug: 'paris',
+    },
+    {
+      name: 'Thanawat Chaiyo',
+      title: 'Trip to Bangkok',
+      desc: 'Explore golden temples, cruise the Chao Phraya River, shop local markets, and eat street food that will blow your mind.',
+      image: '/img/bangkok.avif',
+      slug: 'bangkok',
+    },
+    {
+      name: 'Luca Romano',
+      title: 'Trip to Rome',
+      desc: 'Dive into ancient history with the Colosseum and Roman Forum, then enjoy gelato near the Trevi Fountain and sunset at Piazza Navona.',
+      image: '/img/rome.avif',
+      slug: 'rome',
+    },
+    
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-sans">
+    <div className="flex flex-col min-h-screen font-sans bg-white">
       <Navbar />
 
       {/* Hero */}
       <section
         className="flex-1 py-20 text-center px-6 bg-gradient-to-b from-blue-50 to-white"
         style={{
-          backgroundImage: 'url("/banner.png")',
+          backgroundImage: 'url("/banner1.jpg")',
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           width: '100%',
@@ -77,9 +69,9 @@ export default function HomePage() {
         }}
       >
         <h1 className="text-6xl md:text-7xl font-extrabold text-gray-800 mb-8 mt-45">
-           <span className="text-yellow-300">Easy Trips with Smart Tech</span> 
+          <span className="text-blue-800">Easy Trips with Smart Tech</span>
         </h1>
-        <p className="text-xl text-yellow-300 mb-10 max-w-xl mx-auto">
+        <p className="text-xl text-black bold mb-10 max-w-xl mx-auto">
           Your Personal Travel Assistant.<br /> Smarter than Google. Cooler than a Tour Guide.
         </p>
 
@@ -95,10 +87,8 @@ export default function HomePage() {
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6"
           >
-            <path d="M17.1,11.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L10,15.6L4.3,9.9c-0.4-0.4-1-0.4-1.4,0c-0.4,0.4-0.4,1,0,1.4l6.4,6.4		c0.4,0.4,1,0.4,1.4,0L17.1,11.3z M9-2v19h2V-2H9z"></path>
+            <path d="M17.1,11.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L10,15.6L4.3,9.9c-0.4-0.4-1-0.4-1.4,0c-0.4,0.4-0.4,1,0,1.4l6.4,6.4c0.4,0.4,1,0.4,1.4,0L17.1,11.3z M9-2v19h2V-2H9z"></path>
           </svg>
-
-          {/* Optional additional circle effect (like ::before or ::after) */}
           <span className="absolute top-0 left-0 w-32 h-32 bg-white opacity-50 rounded-full animate-ping"></span>
         </a>
       </section>
@@ -136,7 +126,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Grid Feature Cards */}
+      {/* Feature Cards */}
       <section id="features" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-20 text-center mt-20 mb-20">
           {[
@@ -155,8 +145,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Community Trips */}
-      <section id="community" className="py-24 bg-white px-6 mb-40 mt-20">
+      {/* Trips Section */}
+      <section className="py-24 bg-white px-6 mb-40 mt-20">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
             Journey Inspirations from Travelers
@@ -179,7 +169,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      
 
       <Footer />
     </div>
