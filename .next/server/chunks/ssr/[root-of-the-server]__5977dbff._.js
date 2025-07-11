@@ -408,7 +408,7 @@ const sendMessageToN8n = async (message)=>{
      * สร้าง AbortController เพื่อยกเลิกการเชื่อมต่อหากใช้เวลานานเกินไป
      * timeout ตั้งไว้ที่ 10 วินาทีเพื่อป้องกันการรอนานเกินไป
      */ const controller = new AbortController();
-        const timeoutId = setTimeout(()=>controller.abort(), 10000); // timeout หลัง 10 วินาที
+        const timeoutId = setTimeout(()=>controller.abort(), 20000); // timeout หลัง 20 วินาที
         /**
      * ส่งคำขอไปยัง n8n webhook
      * ----------------------
@@ -597,23 +597,19 @@ function ChatbotPage() {
     const [input, setInput] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const messagesEndRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // ฟังก์ชันเลื่อนไปยังข้อความล่าสุด
+    // Scroll only when user sends a message
     const scrollToBottom = ()=>{
         messagesEndRef.current?.scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'smooth',
+            block: 'nearest'
         });
     };
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        scrollToBottom();
-    }, [
-        messages
-    ]);
     const handleSend = async ()=>{
         if (!input.trim() || isLoading) return;
         const userMessage = input;
         setInput('');
         setIsLoading(true);
-        // เพิ่มข้อความของผู้ใช้ลงในรายการข้อความ
+        // Add user message and scroll
         setMessages((prev)=>[
                 ...prev,
                 {
@@ -621,10 +617,11 @@ function ChatbotPage() {
                     text: userMessage
                 }
             ]);
+        scrollToBottom();
         try {
-            // ส่งข้อความไปยัง n8n webhook
+            // Send to n8n webhook
             const response = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$utils$2f$n8nService$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sendMessageToN8n"])(userMessage);
-            // เพิ่มข้อความตอบกลับจาก n8n ลงในรายการข้อความ
+            // Add bot response
             setMessages((prev)=>[
                     ...prev,
                     {
@@ -651,7 +648,7 @@ function ChatbotPage() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Navbar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/chat/page.tsx",
-                lineNumber: 75,
+                lineNumber: 72,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -664,7 +661,7 @@ function ChatbotPage() {
                             children: "✈️ JoyTrip AI Travel Assistant"
                         }, void 0, false, {
                             fileName: "[project]/src/app/chat/page.tsx",
-                            lineNumber: 80,
+                            lineNumber: 77,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -679,7 +676,7 @@ function ChatbotPage() {
                                         weather: msg.weather
                                     }, i, false, {
                                         fileName: "[project]/src/app/chat/page.tsx",
-                                        lineNumber: 87,
+                                        lineNumber: 84,
                                         columnNumber: 15
                                     }, this)),
                                 isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -693,7 +690,7 @@ function ChatbotPage() {
                                                     className: "h-3 w-3 bg-blue-600 rounded-full animate-bounce"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/chat/page.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 95,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -703,7 +700,7 @@ function ChatbotPage() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/chat/page.tsx",
-                                                    lineNumber: 99,
+                                                    lineNumber: 96,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -713,36 +710,36 @@ function ChatbotPage() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/chat/page.tsx",
-                                                    lineNumber: 100,
+                                                    lineNumber: 97,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/chat/page.tsx",
-                                            lineNumber: 97,
+                                            lineNumber: 94,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/chat/page.tsx",
-                                        lineNumber: 96,
+                                        lineNumber: 93,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/chat/page.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 92,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     ref: messagesEndRef
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/chat/page.tsx",
-                                    lineNumber: 105,
+                                    lineNumber: 102,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/chat/page.tsx",
-                            lineNumber: 85,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -759,7 +756,7 @@ function ChatbotPage() {
                                     disabled: isLoading
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/chat/page.tsx",
-                                    lineNumber: 110,
+                                    lineNumber: 107,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -769,35 +766,35 @@ function ChatbotPage() {
                                     children: isLoading ? 'Sending...' : 'Send'
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/chat/page.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 117,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/chat/page.tsx",
-                            lineNumber: 109,
+                            lineNumber: 106,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/chat/page.tsx",
-                    lineNumber: 78,
+                    lineNumber: 75,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/chat/page.tsx",
-                lineNumber: 77,
+                lineNumber: 74,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Footer$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/chat/page.tsx",
-                lineNumber: 131,
+                lineNumber: 128,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/chat/page.tsx",
-        lineNumber: 74,
+        lineNumber: 71,
         columnNumber: 5
     }, this);
 }

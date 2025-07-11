@@ -1,32 +1,5 @@
 /* [next]/internal/font/google/geist_e531dabc.module.css [app-client] (css) */
 @font-face {
-  font-family: Geist;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../media/gyByhwUxId8gMEwYGFWNOITddY4-s.b7d310ad.woff2") format("woff2");
-  unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
-}
-
-@font-face {
-  font-family: Geist;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../media/gyByhwUxId8gMEwSGFWNOITddY4-s.81df3a5b.woff2") format("woff2");
-  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: Geist;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../media/gyByhwUxId8gMEwcGFWNOITd-s.p.da1ebef7.woff2") format("woff2");
-  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: Geist Fallback;
   src: local(Arial);
   ascent-override: 95.94%;
@@ -46,33 +19,6 @@
 
 
 /* [next]/internal/font/google/geist_mono_68a01160.module.css [app-client] (css) */
-@font-face {
-  font-family: Geist Mono;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../media/or3nQ6H_1_WfwkMZI_qYFrMdmhHkjkotbA-s.cb6bbcb1.woff2") format("woff2");
-  unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
-}
-
-@font-face {
-  font-family: Geist Mono;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../media/or3nQ6H_1_WfwkMZI_qYFrkdmhHkjkotbA-s.e32db976.woff2") format("woff2");
-  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: Geist Mono;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../media/or3nQ6H_1_WfwkMZI_qYFrcdmhHkjko-s.p.be19f591.woff2") format("woff2");
-  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 @font-face {
   font-family: Geist Mono Fallback;
   src: local(Arial);
@@ -143,12 +89,14 @@
 @layer theme {
   :root, :host {
     --color-yellow-200: oklch(94.5% .129 101.54);
+    --color-green-500: oklch(72.3% .219 149.579);
     --color-blue-50: oklch(97% .014 254.604);
     --color-blue-300: oklch(80.9% .105 251.813);
     --color-blue-400: oklch(70.7% .165 254.624);
     --color-blue-500: oklch(62.3% .214 259.815);
     --color-blue-600: oklch(54.6% .245 262.881);
     --color-blue-700: oklch(48.8% .243 264.376);
+    --color-blue-800: oklch(42.4% .199 265.638);
     --color-gray-50: oklch(98.5% .002 247.839);
     --color-gray-100: oklch(96.7% .003 264.542);
     --color-gray-200: oklch(92.8% .006 264.531);
@@ -433,6 +381,40 @@
     z-index: 50;
   }
 
+  .container {
+    width: 100%;
+  }
+
+  @media (width >= 40rem) {
+    .container {
+      max-width: 40rem;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .container {
+      max-width: 48rem;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .container {
+      max-width: 64rem;
+    }
+  }
+
+  @media (width >= 80rem) {
+    .container {
+      max-width: 80rem;
+    }
+  }
+
+  @media (width >= 96rem) {
+    .container {
+      max-width: 96rem;
+    }
+  }
+
   .mx-auto {
     margin-inline: auto;
   }
@@ -451,6 +433,10 @@
 
   .mt-20 {
     margin-top: calc(var(--spacing) * 20);
+  }
+
+  .mt-24 {
+    margin-top: calc(var(--spacing) * 24);
   }
 
   .mt-45 {
@@ -491,6 +477,10 @@
 
   .mb-20 {
     margin-bottom: calc(var(--spacing) * 20);
+  }
+
+  .mb-40 {
+    margin-bottom: calc(var(--spacing) * 40);
   }
 
   .mb-50 {
@@ -645,6 +635,10 @@
     cursor: pointer;
   }
 
+  .resize-none {
+    resize: none;
+  }
+
   .list-inside {
     list-style-position: inside;
   }
@@ -695,6 +689,14 @@
 
   .gap-12 {
     gap: calc(var(--spacing) * 12);
+  }
+
+  .gap-16 {
+    gap: calc(var(--spacing) * 16);
+  }
+
+  .gap-20 {
+    gap: calc(var(--spacing) * 20);
   }
 
   :where(.space-y-1 > :not(:last-child)) {
@@ -804,6 +806,10 @@
 
   .bg-gray-100 {
     background-color: var(--color-gray-100);
+  }
+
+  .bg-gray-200 {
+    background-color: var(--color-gray-200);
   }
 
   .bg-gray-900 {
@@ -1014,6 +1020,10 @@
     color: var(--color-blue-700);
   }
 
+  .text-blue-800 {
+    color: var(--color-blue-800);
+  }
+
   .text-gray-300 {
     color: var(--color-gray-300);
   }
@@ -1036,6 +1046,10 @@
 
   .text-gray-900 {
     color: var(--color-gray-900);
+  }
+
+  .text-green-500 {
+    color: var(--color-green-500);
   }
 
   .text-white {

@@ -1,0 +1,12 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/_not-found/page": "/_not-found",
+  "/trips/bangkok/page": "/trips/bangkok",
+  "/trips/new-york/page": "/trips/new-york",
+  "/trips/paris/page": "/trips/paris",
+  "/trips/rome/page": "/trips/rome",
+  "/trips/tokyo/page": "/trips/tokyo",
+  "/trips/switzerland/page": "/trips/switzerland",
+  "/chat/page": "/chat",
+  "/page": "/"
+}

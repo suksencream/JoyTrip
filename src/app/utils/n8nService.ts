@@ -121,7 +121,7 @@ export const sendMessageToN8n = async (message: string): Promise<MessageResponse
      * timeout ตั้งไว้ที่ 10 วินาทีเพื่อป้องกันการรอนานเกินไป
      */
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // timeout หลัง 10 วินาที
+    const timeoutId = setTimeout(() => controller.abort(), 20000); // timeout หลัง 20 วินาที
     
     /**
      * ส่งคำขอไปยัง n8n webhook

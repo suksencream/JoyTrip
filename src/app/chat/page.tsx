@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ChatMessage from '../components/ChatMessage';
@@ -23,35 +23,32 @@ export default function ChatbotPage() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
-  // ฟังก์ชันเลื่อนไปยังข้อความล่าสุด
+
+  // Scroll only when user sends a message
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
-  
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
-    
+
     const userMessage = input;
     setInput('');
     setIsLoading(true);
-    
-    // เพิ่มข้อความของผู้ใช้ลงในรายการข้อความ
+
+    // Add user message and scroll
     setMessages((prev) => [...prev, { role: 'user', text: userMessage }]);
-    
+    scrollToBottom();
+
     try {
-      // ส่งข้อความไปยัง n8n webhook
+      // Send to n8n webhook
       const response = await sendMessageToN8n(userMessage);
-      
-      // เพิ่มข้อความตอบกลับจาก n8n ลงในรายการข้อความ
+
+      // Add bot response
       setMessages((prev) => [
-        ...prev, 
-        { 
-          role: 'bot', 
+        ...prev,
+        {
+          role: 'bot',
           text: response.text,
           weather: response.weather
         }
@@ -60,8 +57,8 @@ export default function ChatbotPage() {
       console.error('Error handling message:', error);
       setMessages((prev) => [
         ...prev,
-        { 
-          role: 'bot', 
+        {
+          role: 'bot',
           text: 'Sorry, I encountered a problem. Please try again later.'
         }
       ]);
