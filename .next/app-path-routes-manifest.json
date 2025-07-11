@@ -2,11 +2,11 @@
   "/favicon.ico/route": "/favicon.ico",
   "/_not-found/page": "/_not-found",
   "/trips/bangkok/page": "/trips/bangkok",
-  "/trips/paris/page": "/trips/paris",
   "/trips/new-york/page": "/trips/new-york",
-  "/page": "/",
+  "/trips/paris/page": "/trips/paris",
   "/trips/rome/page": "/trips/rome",
   "/trips/switzerland/page": "/trips/switzerland",
   "/trips/tokyo/page": "/trips/tokyo",
-  "/chat/page": "/chat"
+  "/chat/page": "/chat",
+  "/page": "/"
 }
