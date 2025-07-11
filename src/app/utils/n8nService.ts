@@ -213,7 +213,7 @@ export const sendMessageToN8n = async (message: string): Promise<MessageResponse
           // ลองแปลงเป็น JSON ถ้าทำได้ (อาจจะเป็น JSON ที่ส่งมาโดยไม่ได้กำหนด Content-Type ที่ถูกต้อง)
           try {
             data = JSON.parse(textData);
-          } catch (e) {
+          } catch {
             // ถ้าแปลงไม่ได้ ให้ใช้เป็นข้อความโดยตรง
             data = textData;
           }
