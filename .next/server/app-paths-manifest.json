@@ -1,12 +1,6 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/trips/bangkok/page": "app/trips/bangkok/page.js",
-  "/trips/paris/page": "app/trips/paris/page.js",
-  "/trips/new-york/page": "app/trips/new-york/page.js",
-  "/page": "app/page.js",
-  "/trips/rome/page": "app/trips/rome/page.js",
-  "/trips/switzerland/page": "app/trips/switzerland/page.js",
-  "/trips/tokyo/page": "app/trips/tokyo/page.js",
-  "/chat/page": "app/chat/page.js"
+  "/chat/page": "app/chat/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
 }

@@ -59,7 +59,7 @@ export default function HomePage() {
 
       {/* Hero */}
      <section
-  className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] bg-no-repeat bg-center bg-contain flex flex-col justify-center items-center px-4 text-center"
+  className="relative w-full h-[500px] sm:h-[400px] md:h-[600px] bg-no-repeat bg-center bg-contain flex flex-col justify-center items-center px-4 text-center"
   style={{
     backgroundImage: 'url("/banner_resized.png")',
   }}

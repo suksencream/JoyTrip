@@ -50,8 +50,8 @@ export default function ChatbotPage() {
         {
           role: 'bot',
           text: response.text,
-          weather: response.weather
-        }
+          weather: response.weather,
+        },
       ]);
     } catch (error) {
       console.error('Error handling message:', error);
@@ -59,8 +59,8 @@ export default function ChatbotPage() {
         ...prev,
         {
           role: 'bot',
-          text: 'Sorry, I encountered a problem. Please try again later.'
-        }
+          text: 'Sorry, I encountered a problem. Please try again later.',
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -71,30 +71,36 @@ export default function ChatbotPage() {
     <div className="min-h-screen flex flex-col font-sans bg-white">
       <Navbar />
 
-      <main className="flex-1 flex justify-center bg-gradient-to-b from-blue-50 to-white px-4 py-10 mb-50">
-        <div className="w-full max-w-3xl flex flex-col bg-white shadow-xl rounded-xl border border-gray-200">
+      <main className="flex-1 flex justify-center bg-gradient-to-b from-blue-50 to-white px-4 py-6 sm:py-10 mb-12 sm:mb-20">
+        <div className="w-full max-w-3xl flex flex-col bg-white shadow-xl rounded-xl border border-gray-200
+          mx-2 sm:mx-4
+          ">
           {/* Header */}
-          <div className="bg-blue-600 text-white text-center py-4 rounded-t-xl font-semibold text-lg">
+          <div className="bg-blue-600 text-white text-center py-4 rounded-t-xl font-semibold text-lg sm:text-xl">
             ✈️ JoyTrip AI Travel Assistant
           </div>
 
           {/* Messages */}
-          <div className="flex-1 px-4 py-6 space-y-4 overflow-y-auto" style={{ maxHeight: '70vh' }}>
+          <div
+            className="flex-1 px-3 py-4 space-y-4 overflow-y-auto"
+            style={{ maxHeight: '70vh' }}
+          >
             {messages.map((msg, i) => (
-              <ChatMessage
-                key={i}
-                role={msg.role}
-                text={msg.text}
-                weather={msg.weather}
-              />
+              <ChatMessage key={i} role={msg.role} text={msg.text} weather={msg.weather} />
             ))}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="px-5 py-3 rounded-lg shadow-md bg-gray-100 text-gray-800 rounded-bl-none flex items-center">
                   <div className="flex space-x-2">
                     <div className="h-3 w-3 bg-blue-600 rounded-full animate-bounce"></div>
-                    <div className="h-3 w-3 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="h-3 w-3 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                    <div
+                      className="h-3 w-3 bg-blue-600 rounded-full animate-bounce"
+                      style={{ animationDelay: '0.2s' }}
+                    ></div>
+                    <div
+                      className="h-3 w-3 bg-blue-600 rounded-full animate-bounce"
+                      style={{ animationDelay: '0.4s' }}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -103,20 +109,24 @@ export default function ChatbotPage() {
           </div>
 
           {/* Input */}
-          <div className="border-t border-gray-200 p-4 flex gap-2 bg-white">
+          <div className="border-t border-gray-200 p-3 sm:p-4 flex gap-2 bg-white">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Ask your travel assistant..."
-              className="flex-grow rounded-full border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow rounded-full border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500
+                text-sm sm:text-base
+              "
               autoFocus
               disabled={isLoading}
             />
             <button
               onClick={handleSend}
-              className={`${isLoading ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'} text-white rounded-full px-6 py-3 font-semibold transition`}
+              className={`${
+                isLoading ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
+              } text-white rounded-full px-4 sm:px-6 py-3 font-semibold transition text-sm sm:text-base`}
               disabled={isLoading}
             >
               {isLoading ? 'Sending...' : 'Send'}
